@@ -1,5 +1,5 @@
 // server/controllers/projectController.js
-const Project = require('../models/Project');
+const Project = require('../models/Projects');
 const User = require('../models/User');
 const asyncHandler = require('express-async-handler');
 

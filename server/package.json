@@ -12,10 +12,15 @@
   "license": "ISC",
   "description": "Just a simple crowdfunding website to showcase our skills of web development and a project to submit as part of the curriculum.",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "razorpay": "^2.9.6",
+    "slugify": "^1.6.6"
   }
 }
