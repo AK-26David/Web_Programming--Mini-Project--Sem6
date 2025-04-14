@@ -5,7 +5,6 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fetchuser = require("../Middleware/fetchuser");
-const mailsend = require("../Middleware/mailsender");
 require("dotenv").config();
 
 // Creating an user
@@ -39,6 +38,7 @@ router.post(
         name: req.body.name,
         password: secured,
         email: req.body.email,
+        isVerified: true,
       });
       const data = {
         user: {
@@ -46,22 +46,12 @@ router.post(
         },
       };
       const authtoken = jwt.sign(data, process.env.JWT_SECRET);
-      let emailCode = jwt.sign(data, process.env.ACTIVATION_TOKEN_SECRET, {
-        expiresIn: "20m",
-      });
-      let vericationEmailLink = `${process.env.CLIENT_URL}/activate/${emailCode}`;
-      await mailsend({
-        email: userData.email,
-        subject: "Verification Mail",
-        url: vericationEmailLink,
-        name: userData.name,
-      });
       success = true;
-      return res.json({ success, authtoken, emailCode });
+      return res.json({ success, authtoken });
     } catch (error) {
       success = false;
       console.log(error);
-      return res.send(500).json({ success: false, error });
+      return res.status(500).json({ success: false, error: error.message || 'Internal Server Error' });
     }
   }
 );
@@ -77,20 +67,16 @@ router.post(
     const errors = validationResult(req);
     let success = false;
     if (!errors.isEmpty()) {
-      return res.status(500).json({ success, errors: errors.array() });
+      return res.status(400).json({ success, errors: errors.array() });
     }
     const { email, password } = req.body;
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(500).json({
+        return res.status(400).json({
           success: false,
           error: "Please try to login with correct credentials",
         });
-      } else if (user.isVerified === false) {
-        return res
-          .status(500)
-          .json({ success: false, error: "Please Verify your Email" });
       }
       //main password comparision
       const passwordCompare = await bcrypt.compare(password, user.password);
@@ -105,7 +91,6 @@ router.post(
           id: user.id,
         },
       };
-      console.log(process.env.JWT_SECRET);
       const authtoken = jwt.sign(data, process.env.JWT_SECRET);
       success = true;
       return res.json({ success, authtoken });
@@ -115,27 +100,6 @@ router.post(
     }
   }
 );
-
-// Route 5: For Email Verification
-router.post("/email/activation", async (req, res) => {
-  try {
-    const { Email_token } = req.body;
-    const userId = jwt.verify(Email_token, process.env.ACTIVATION_TOKEN_SECRET);
-    const user = await User.findById(userId.user.id);
-    if (user) {
-      const updated = await User.findByIdAndUpdate(userId.user.id, {
-        isVerified: true,
-      }).then(() => {
-        return res.json({
-          success: true,
-          msg: "Email Verified Successfully!!",
-        });
-      });
-    }
-  } catch (error) {
-    return res.status(404).send({ success: false, msg: error.message });
-  }
-});
 
 // Route 4: for Fetching user data after log-in
 router.get("/getuser", fetchuser, async (req, res) => {

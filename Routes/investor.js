@@ -118,7 +118,8 @@ router.post(
         Vision,
         Problemstatement,
         Solution,
-        Ask
+        Ask,
+        isVerified : true
       });
       if (existed) {
         return res.status(400).json({ success: false, msg: "Please Enter a unique name" });

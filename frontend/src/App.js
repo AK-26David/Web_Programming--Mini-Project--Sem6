@@ -14,7 +14,6 @@ import Login from "./components/Login/Login";
 import Signup from "./components/Login/Signup";
 import Dashboard from "./components/Dashboard/Dashboard";
 import UserContext from "./Context/userContext";
-import EmailVerification from "./components/Login/EmailVerification";
 import Alert from "./components/Alert/Alert";
 import Product from "./components/Dashboard/Product";
 import Form from "./components/Forms/Form";
@@ -65,8 +64,6 @@ function App() {
             </Route>
 
             <Route exact path="/dashboard" element={<Dashboard />}></Route>
-
-            <Route exact path="/activate/:id" element={<EmailVerification />}></Route>
 
             <Route exact path="/dashboard/startup/:id" element={<Product></Product>}></Route>
 

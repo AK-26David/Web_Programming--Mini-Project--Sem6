@@ -127,17 +127,19 @@ const UserState = (props) => {
   };
 
   const getUserData = async () => {
-    const response = await axios
-      .get(`/api/auth/getuser`, {
+    try {
+      const response = await axios.get(`/api/auth/getuser`, {
         headers: {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem("token"),
         },
-      })
-      .catch((error) => {
-        console.log(error.response.data.error);
       });
-    setUser(response.data.data);
+      setUser(response.data.data);
+    } catch (error) {
+      // Handle errors, e.g., clear user state if unauthorized
+      console.error("Error fetching user data:", error.response ? error.response.data : error.message);
+      setUser(null); // Clear user data on error
+    }
   };
   const getStartups = async () => {
     const response = await axios.get(`/api/investor/fetch-startups`, {
@@ -153,15 +155,20 @@ const UserState = (props) => {
   };
   // for Startups DashBoard
   const getUserStartups = async () => {
-    const response = await axios.get(`/api/investor/fetchuserStartups`, {
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
-      },
-    });
-
-    if (response.data.success) {
-      setUserStartup(response.data.data);
+    try {
+      const response = await axios.get(`/api/investor/fetchuserStartups`, {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+      });
+      if (response.data.success) {
+        setUserStartup(response.data.data);
+      }
+    } catch (error) {
+      // Handle errors, e.g., clear startups if unauthorized
+      console.error("Error fetching user startups:", error.response ? error.response.data : error.message);
+      setUserStartup([]); // Clear user startups on error
     }
   };
   return (
