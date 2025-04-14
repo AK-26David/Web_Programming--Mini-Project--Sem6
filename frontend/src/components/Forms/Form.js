@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import "./Form.css";
-import { Link, useNavigate } from "react-router-dom";
-import UserContext from '../../Context/userContext';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from '../../Axios/axios';
+import UserContext from '../../Context/userContext';
+import "./Form.css";
 const Form = () => {
     useEffect(() => {
         if (!localStorage.getItem('token')) {
@@ -67,12 +67,12 @@ const Form = () => {
                 <div className="row g-0">
                     <div className="col-md-7">
                         <div className="card-body">
-                            <h1 className="card-title text-center startup_form_head">Startup Registration Form</h1>
+                            <h1 className="card-title text-center startup_form_head">Project Registration Form</h1>
                             <form className="my-4" onSubmit={createStartup}>
                                 <div className="mb-3">
-                                    <label htmlFor="Name" className="form-label text-muted">What is the name of your startup?</label>
+                                    <label htmlFor="Name" className="form-label text-muted">What is the name of your project?</label>
                                     <input type="text"
-                                        placeholder="Startup Name"
+                                        placeholder="Project Name"
                                         className="form-control form_input"
                                         id="Name"
                                         name="Name"
@@ -92,7 +92,7 @@ const Form = () => {
                                         required={true} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="Description" className="form-label text-muted">Describe your startup in less than 50 words?</label>
+                                    <label htmlFor="Description" className="form-label text-muted">Describe your project in less than 50 words?</label>
                                     <textarea rows="4" className="form_input textarea_input"
                                         id="Description"
                                         name="Description"
@@ -113,8 +113,8 @@ const Form = () => {
                                         required={true} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="Instagram" className="form-label text-muted">Enter your Startup's Instagram Page's link</label>
-                                    <input type="url" placeholder="Startup's Instagram Page's link"
+                                    <label htmlFor="Instagram" className="form-label text-muted">Enter your project's Instagram page's link</label>
+                                    <input type="url" placeholder="Project's Instagram page's link"
                                         className="form-control form_input"
                                         id="Instagram"
                                         name="Instagram"
@@ -124,9 +124,9 @@ const Form = () => {
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="Email" className="form-label text-muted">Enter your Startup's Email</label>
+                                    <label htmlFor="Email" className="form-label text-muted">Enter your project's email</label>
                                     <input type="Email"
-                                        placeholder="Startup's Email (Official)"
+                                        placeholder="Project's e-mail (official)"
                                         className="form-control form_input"
                                         id="Email"
                                         name="Email"
@@ -135,9 +135,9 @@ const Form = () => {
                                         required={true} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="LinkedIn" className="form-label text-muted">Enter your Startup's LinkedIn Page's link</label>
+                                    <label htmlFor="LinkedIn" className="form-label text-muted">Enter your project's LinkedIn page's link</label>
                                     <input type="url"
-                                        placeholder="Startup's LinkedIn Page's link"
+                                        placeholder="Project's LinkedIn page's link"
                                         className="form-control form_input"
                                         id="LinkedIn"
                                         name="LinkedIn"
@@ -146,7 +146,7 @@ const Form = () => {
                                         required={true} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="Category" className="form-label text-muted">Select the category in which your startup operate</label>
+                                    <label htmlFor="Category" className="form-label text-muted">Select the category in which your project operates</label>
                                     <select className="form-select form_input" aria-label="Default select example"
                                         id="Category"
                                         name="Category"
@@ -154,19 +154,19 @@ const Form = () => {
                                         onChange={onChange}
                                         required={true} > 
                                         <option >Choose the category</option>
-                                        <option value="Art">Art</option>
-                                        <option value="Design and Tech">Design and Tech</option>
-                                        <option value="Film">Film</option>
-                                        <option value="Games">Games</option>
-                                        <option value="Music">Music</option>
-                                        <option value="Publishing">Publishing</option>
-                                        <option value="Finance">Finance</option>
-                                        <option value="Education">Education</option>
-                                        <option value="Eco-Friendly">Eco-Friendly</option>
+                                        <option value="Automobile">Automobile</option>
+                                        <option value="Space">Space</option>
+                                        <option value="Aircraft">Aircraft</option>
+                                        <option value="Hyperloop">Hyperloop</option>
+                                        <option value="Software">Software</option>
+                                        <option value="Robotics">Robotics</option>
+                                        <option value="Bio-Tech">Bio-Tech</option>
+                                        <option value="Defense">Defense</option>
+                                        <option value="Welfare">Welfare</option>
                                     </select>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="Vision" className="form-label text-muted" >Explain your startup's Vision in less than 50 words.</label>
+                                    <label htmlFor="Vision" className="form-label text-muted" >Explain your project's vision in less than 50 words.</label>
                                     <textarea rows="4"
                                         className="form_input textarea_input"
                                         id="Vision"
@@ -177,7 +177,7 @@ const Form = () => {
                                     </textarea>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="Problemstatement" className="form-label text-muted">State the problem you are trying to solve with your startup</label>
+                                    <label htmlFor="Problemstatement" className="form-label text-muted">State the problem you are trying to solve with your project</label>
                                     <textarea
                                         rows="4"
                                         className="form_input textarea_input"
@@ -202,7 +202,7 @@ const Form = () => {
                                     </textarea>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="Ask" className="form-label text-muted">How much amount you want to raise for your startup?</label>
+                                    <label htmlFor="Ask" className="form-label text-muted">What amount do you want to raise for your project?</label>
                                     <input
                                         type="number"
                                         placeholder="Amount"

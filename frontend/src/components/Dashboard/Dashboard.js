@@ -1,17 +1,17 @@
-import React, { useEffect, useContext, useState } from 'react';
-import "./Dashboard.css";
-import { useNavigate, Link } from "react-router-dom";
-import DashboardNavbar from './DashboardNavbar';
-import UserContext from '../../Context/userContext';
-import DashboardCard from './dashboardCard';
+import React, { useContext, useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
+import { useNavigate } from "react-router-dom";
+import UserContext from '../../Context/userContext';
+import "./Dashboard.css";
+import DashboardCard from './dashboardCard';
+import DashboardNavbar from './DashboardNavbar';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const context = useContext(UserContext);
   let { getUserData, startups, getStartups } = context;
   const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState("Design and Tech")
+  const [category, setCategory] = useState("Space")
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       navigate("/login");
@@ -35,21 +35,21 @@ const Dashboard = () => {
       {loading ? (<ReactLoading type={"cylon"} color={"rgb(225, 41, 246)"} height={'50%'} width={'100%'} />) : (<>
         <DashboardNavbar />
         <div className="scrollmenu">
-          <h5 onClick={() => { setCategory("Design and Tech") }}>Design and Tech</h5>
-          <h5 onClick={() => { setCategory("Arts") }}>Arts</h5>
-          <h5 onClick={() => { setCategory("Film") }}>Film</h5>
-          <h5 onClick={() => { setCategory("Games") }}>Games</h5>
-          <h5 onClick={() => { setCategory("Music") }}>Music</h5>
-          <h5 onClick={() => { setCategory("Publishing") }}>Publishing</h5>
-          <h5 onClick={() => { setCategory("Finance") }}>Finance</h5>
-          <h5 onClick={() => { setCategory("Education") }}>Education</h5>
-          <h5 onClick={() => { setCategory("Eco-Friendly") }}>Eco-Friendly</h5>
+          <h5 onClick={() => { setCategory("Space") }}>Space</h5>
+          <h5 onClick={() => { setCategory("Automobile") }}>Automobile</h5>
+          <h5 onClick={() => { setCategory("Aircraft") }}>Aircraft</h5>
+          <h5 onClick={() => { setCategory("Hyperloop") }}>Hyperloop</h5>
+          <h5 onClick={() => { setCategory("Software") }}>Software</h5>
+          <h5 onClick={() => { setCategory("Robotics") }}>Robotics</h5>
+          <h5 onClick={() => { setCategory("Bio-Tech") }}>Bio-Tech</h5>
+          <h5 onClick={() => { setCategory("Defense") }}>Defense</h5>
+          <h5 onClick={() => { setCategory("Welfare") }}>Welfare</h5>
         </div>
         <div className="container-fluid dashboard__container">
 
           <div className="container my-5">
             <div className="row gy-3">
-              {(FilteredList.length === 0) && <> <h2 className="text-center my-5" style={{ color: "rgb(225, 41, 246)" }}>No Projects of this category has been here yet...</h2></>}
+              {(FilteredList.length === 0) && <> <h2 className="text-center my-5" style={{ color: "rgb(225, 41, 246)" }}>No projects of this category have been added here yet...</h2></>}
               {resourceList}
             </div>
           </div>
