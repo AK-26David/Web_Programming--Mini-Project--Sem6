@@ -16,9 +16,6 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
 });
 
-
-
-
 //Intializing the application
 const PORT = process.env.PORT || 5000;
 
