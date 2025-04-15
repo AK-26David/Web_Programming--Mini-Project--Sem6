@@ -10,12 +10,12 @@ const { body, validationResult } = require("express-validator");
 const fetchuser = require("../Middleware/fetchuser");
 require('dotenv').config()
 
-//Fetching Startups
+//Fetching Projects
 router.get("/fetch-startups", fetchuser, async (req, res) => {
   try {
     let startups = await Startup.find({ isVerified: true });
     if (startups.length === 0) {
-      return res.status(404).json({ success: false, error: "Could not find any startups right now" });
+      return res.status(404).json({ success: false, error: "Could not find any projects right now" });
     }
     return res.status(200).json({ success: true, data: startups });
   } catch (error) {
@@ -23,13 +23,13 @@ router.get("/fetch-startups", fetchuser, async (req, res) => {
   }
 });
 
-//Fetching Startup's Data
+//Fetching Project's Data
 router.post("/fetch-startup", async (req, res) => {
   try {
     const { startup_id } = req.body;
     let startupsData = await Startup.findById(startup_id);
     if (!startupsData) {
-      return res.status(404).json({ success: false, error: "Could not find any startups right now" });
+      return res.status(404).json({ success: false, error: "Could not find any projects right now" });
     }
     return res.status(200).json({ success: true, data: startupsData });
   }
