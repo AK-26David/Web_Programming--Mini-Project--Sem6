@@ -40,7 +40,7 @@ export const resource = [
     }
     ,{
         title:"How talk about your project honestly and clearly",
-        desc:"Our advice for crafting a project page that's honset,open, and transparent in both text and visuals.",
+        desc:"Our advice for crafting a project page that's honest, open, and transparent in both text and visuals.",
         img:"https://cdn.dribbble.com/users/2211962/screenshots/5998347/media/4947a1f9e99e1484c98ee03a90872775.jpg?compress=1&resize=800x600&vertical=top",
         link: "https://www.kickstarter.com/honest?ref=section-homepage-promo-how-to-talk-about-your-project-honestly-and-clearly"
     }

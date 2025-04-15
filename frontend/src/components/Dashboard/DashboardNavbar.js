@@ -16,7 +16,7 @@ const DashboardNavbar = () => {
         <>
             <nav className="navbar navbar-expand-lg navbar-dark top__head">
                 <div className="container-fluid">
-                    <Link className="navbar-brand p-1 navbar__brand" to="/dashboard">CrowdsClub</Link>
+                    <Link className="navbar-brand p-1 navbar__brand" to="/dashboard">GivMoni</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <i className="fa-solid fa-circle-chevron-down"></i>
                     </button>
