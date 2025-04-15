@@ -6,7 +6,7 @@ export const whatwedoobject = [
   },
 
   {
-    title: "convenience with Security",
+    title: "Convenience with Security",
     desc: "We provide Users with Safe and Convenient modes of payments like UPI, to simplify and secure the overall Crowdfunding experience.",
     icon: "icon fa-solid fa-shield",
   },
