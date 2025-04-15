@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import DashboardNavbar from '../DashboardNavbar';
-import ViewTransaction from './ViewTransaction';
-import "./ViewReview.css";
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import axios from '../../../Axios/axios';
 import UserContext from '../../../Context/userContext';
+import DashboardNavbar from '../DashboardNavbar';
+import "./ViewReview.css";
+import ViewTransaction from './ViewTransaction';
 const ViewReview = () => {
     const navigate = useNavigate();
     const param = useParams();
@@ -17,8 +17,8 @@ const ViewReview = () => {
             navigate("/login");
         }
         const getReviewData = async () => {
-            const response1 = await axios.post('/api/investor/fetchstartupReview', {
-                startup_id: param.id
+            const response1 = await axios.post('/api/investor/fetchprojectReview', {
+                project_id: param.id
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -31,8 +31,8 @@ const ViewReview = () => {
             if (response1.data.success) {
                 setReviewData(response1.data.ReviewData);
             } console.log(response1);
-            const response2 = await axios.post('/api/investor/getStartupsTransactions', {
-                startup_id: param.id
+            const response2 = await axios.post('/api/investor/getProjectsTransactions', {
+                project_id: param.id
             }, {
                 headers: {
                     "Content-Type": "application/json",

@@ -13,7 +13,7 @@ const Form = () => {
     const navigate = useNavigate();
     const context = useContext(UserContext);
     let { showAlert } = context;
-    const createStartup = async (e) => {
+    const createProject = async (e) => {
         e.preventDefault();
         const { Name,
             Description,
@@ -27,7 +27,7 @@ const Form = () => {
             Problemstatement,
             Solution,
             Ask } = credentials;
-        const response = await axios.post('/api/investor/create-startup',
+        const response = await axios.post('/api/investor/create-project',
             {
                 Name,
                 Description,
@@ -63,12 +63,12 @@ const Form = () => {
     };
     return (
         <>
-            <div className="card mb-3 mx-auto my-5 startup_form">
+            <div className="card mb-3 mx-auto my-5 project_form">
                 <div className="row g-0">
                     <div className="col-md-7">
                         <div className="card-body">
-                            <h1 className="card-title text-center startup_form_head">Project Registration Form</h1>
-                            <form className="my-4" onSubmit={createStartup}>
+                            <h1 className="card-title text-center project_form_head">Project Registration Form</h1>
+                            <form className="my-4" onSubmit={createProject}>
                                 <div className="mb-3">
                                     <label htmlFor="Name" className="form-label text-muted">What is the name of your project?</label>
                                     <input type="text"
@@ -218,7 +218,7 @@ const Form = () => {
                         </div>
                     </div>
                     <div className="col-md-5">
-                        <img src="https://static.vecteezy.com/system/resources/previews/000/175/200/large_2x/free-startup-vector-illustration.jpg" className="img-fluid rounded-start startup_form_side_img" alt="startup-image" />
+                        <img src="https://www.itarian.com/assets-new/images/project-management.png" className="img-fluid rounded-start project_form_side_img" alt="project-image" />
                     </div>
                 </div>
             </div>

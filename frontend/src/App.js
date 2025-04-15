@@ -1,28 +1,28 @@
-import "./App.css";
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
+  Route,
   BrowserRouter as Router,
-  Routes,
-  Route, useNavigate
+  Routes
 } from "react-router-dom";
-import HomePage from "./components/Landing Pages/HomePage";
-import Vision from "./components/Landing Pages/Vision";
-import WhatWeDo from "./components/Landing Pages/WhatWeDo";
-import Resources from "./components/Landing Pages/Resources";
-import Registered from "./components/Landing Pages/Startup/Registered";
-import Login from "./components/Login/Login";
-import Signup from "./components/Login/Signup";
-import Dashboard from "./components/Dashboard/Dashboard";
+import "./App.css";
 import UserContext from "./Context/userContext";
 import Alert from "./components/Alert/Alert";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Product from "./components/Dashboard/Product";
-import Form from "./components/Forms/Form";
-import Profile from "./components/Dashboard/profile/Profile";
-import ReviewForm from "./components/Forms/ReviewForm";
-import Error from "./components/failed/Error";
-import YourProjects from "./components/Dashboard/your-projects/YourProjects";
 import Investment from "./components/Dashboard/investments/Investment";
+import Profile from "./components/Dashboard/profile/Profile";
 import ViewReview from "./components/Dashboard/viewReview/ViewReview";
+import YourProjects from "./components/Dashboard/your-projects/YourProjects";
+import Form from "./components/Forms/Form";
+import ReviewForm from "./components/Forms/ReviewForm";
+import HomePage from "./components/Landing Pages/HomePage";
+import Registered from "./components/Landing Pages/Project/Registered";
+import Resources from "./components/Landing Pages/Resources";
+import Vision from "./components/Landing Pages/Vision";
+import WhatWeDo from "./components/Landing Pages/WhatWeDo";
+import Login from "./components/Login/Login";
+import Signup from "./components/Login/Signup";
+import Error from "./components/failed/Error";
 function App() {
   const context = useContext(UserContext);
   let { alert,getUserData } = context;
@@ -65,15 +65,15 @@ function App() {
 
             <Route exact path="/dashboard" element={<Dashboard />}></Route>
 
-            <Route exact path="/dashboard/startup/:id" element={<Product></Product>}></Route>
+            <Route exact path="/dashboard/project/:id" element={<Product></Product>}></Route>
 
-            <Route exact path="/dashboard/startup/:id/viewReview" element={<ViewReview></ViewReview>}></Route>
+            <Route exact path="/dashboard/project/:id/viewReview" element={<ViewReview></ViewReview>}></Route>
 
-            <Route exact path="/dashboard/create-startup" element={<Form></Form>}></Route>
+            <Route exact path="/dashboard/create-project" element={<Form></Form>}></Route>
 
             <Route exact path="/dashboard/profile" element={<Profile></Profile>}></Route>
 
-            <Route exact path="/dashboard/startup/review" element={<ReviewForm></ReviewForm>}></Route>
+            <Route exact path="/dashboard/project/review" element={<ReviewForm></ReviewForm>}></Route>
 
             <Route exact path="/dashboard/yourProject" element={<YourProjects></YourProjects>}></Route>
 

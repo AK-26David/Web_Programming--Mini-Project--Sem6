@@ -26,7 +26,7 @@ const DashboardNavbar = () => {
                                 <a className="nav-link active nav__link" aria-current="page" href="#"><i className="fa-solid fa-bell"></i> <span className="nav__link__name">Notification</span> </a>
                             </li>
                             <li className="nav-item p-1">
-                                <Link className="nav-link active nav__link" aria-current="page" to="/dashboard/create-startup"><i className="fa-solid fa-plus"></i> <span className="nav__link__name">Create Project</span> </Link>
+                                <Link className="nav-link active nav__link" aria-current="page" to="/dashboard/create-project"><i className="fa-solid fa-plus"></i> <span className="nav__link__name">Create Project</span> </Link>
                             </li>
                             <li className="nav-item dropdown p-1">
                                 <a className="nav-link dropdown-toggle active nav__link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

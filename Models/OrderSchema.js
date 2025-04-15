@@ -6,9 +6,9 @@ const OrderSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    startup_id: {
+    project_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Startup"
+        ref: "Project"
     },
     razorpay: {
         orderId: String,

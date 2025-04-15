@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const StartupSchema = new mongoose.Schema({
+const ProjectSchema = new mongoose.Schema({
     Founder_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
@@ -23,6 +23,6 @@ const StartupSchema = new mongoose.Schema({
     Current: { type: Number, default: 0 },
     Backers: { type: Number, default: 0 }
 })
-const Startup = mongoose.model("startup", StartupSchema);
-Startup.createIndexes();
-module.exports = Startup;
+const Project = mongoose.model("project", ProjectSchema);
+Project.createIndexes();
+module.exports = Project;

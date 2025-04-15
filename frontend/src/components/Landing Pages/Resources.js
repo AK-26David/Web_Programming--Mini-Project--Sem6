@@ -163,9 +163,9 @@ const Resources = () => {
                 <td className="text-center">7.5%</td>
                 <td className="text-center">2.0%</td>
                 <td>
-                  <i className="fa-solid fa-check right__icon"></i> Equity crowdfunding platform for startups. <br />
+                  <i className="fa-solid fa-check right__icon"></i> Equity crowdfunding platform for projects. <br />
                   <i className="fa-solid fa-xmark cross__icon"></i> Investors receive equity in exchange for funding. <br />
-                  <i className="fa-solid fa-check right__icon"></i> Strict vetting process for startups seeking funding <br />
+                  <i className="fa-solid fa-check right__icon"></i> Strict vetting process for projects seeking funding <br />
                 </td>
               </tr>
             </tbody>

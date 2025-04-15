@@ -6,7 +6,7 @@ import "./ReviewForm.css";
 const ReviewForm = () => {
     const navigate = useNavigate();
     const context = useContext(UserContext);
-    let { showAlert, startupData, setPaymentSuccess } = context;
+    let { showAlert, projectData, setPaymentSuccess } = context;
     const [credentials, setCredentials] = useState({ ideaRating: 0, approachRating: 0, websiteRating: 0, instagramRating: 0 })
     const [active, setActive] = useState("");
     const onChange = (e) => {
@@ -19,7 +19,7 @@ const ReviewForm = () => {
         const { ideaRating, approachRating, websiteRating, instagramRating } = credentials;
         let overallRating = (parseInt(ideaRating) + parseInt(approachRating) + parseInt(websiteRating) + parseInt(instagramRating)) / 4;
         const response = await axios.post('/api/investor/review', {
-            Startup_id: startupData._id, ideaRating, approachRating, websiteRating, instagramRating, overallRating
+            Project_id: projectData._id, ideaRating, approachRating, websiteRating, instagramRating, overallRating
         }, {
             headers: {
                 "Content-Type": "application/json",
@@ -38,10 +38,10 @@ const ReviewForm = () => {
     }
     return (
         <>
-            <div className="card mb-3 mx-auto my-5 startup_form">
+            <div className="card mb-3 mx-auto my-5 project_form">
                 <div className="row g-0">
                     <div className="col-md-5 col-sm-12">
-                        <img src="https://www.pcg-services.com/wp-content/uploads/2016/08/startup-business-strategy-1.jpg" className="img-fluid rounded-start review_image" alt="startup-image" />
+                        <img src="https://www.pcg-services.com/wp-content/uploads/2016/08/project-business-strategy-1.jpg" className="img-fluid rounded-start review_image" alt="project-image" />
                     </div>
                     <div className="col-md-7 col-sm-12">
                         <div className="card-body">

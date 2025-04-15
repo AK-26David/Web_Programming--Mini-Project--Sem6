@@ -3,7 +3,7 @@
     min-height: 310vh;
 }
 
-.startup__heading{
+.project__heading{
   background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);

@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import UserContext from "../../../Context/userContext";
 const InvestmentCard = (props) => {
   const context = useContext(UserContext);
-  let { startups } = context;
-  let data = startups.filter((startup) => {
-    return startup._id === props.data.startup_id;
+  let { projects } = context;
+  let data = projects.filter((project) => {
+    return project._id === props.data.project_id;
   });
   if (data.length > 0) {
     return (

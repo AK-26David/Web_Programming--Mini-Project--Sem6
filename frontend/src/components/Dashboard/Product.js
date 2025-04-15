@@ -1,15 +1,14 @@
-import React from "react";
-import "./Product.css";
-import { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DashboardNavbar from "./DashboardNavbar";
-import ProductCard from "./ProductCard";
 import axios from "../../Axios/axios";
 import UserContext from "../../Context/userContext";
+import DashboardNavbar from "./DashboardNavbar";
+import "./Product.css";
+import ProductCard from "./ProductCard";
 const Product = () => {
   const param = useParams();
   const context = useContext(UserContext);
-  const { setStartupData, loadRazorpay, startupData } = context;
+  const { setProjectData, loadRazorpay, projectData } = context;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,11 +16,11 @@ const Product = () => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
     }
-    const fetchStartupsData = async () => {
+    const fetchProjectsData = async () => {
       try {
         const response = await axios.post(
-          `/api/investor/fetch-startup`,
-          { startup_id: param.id },
+          `/api/investor/fetch-project`,
+          { project_id: param.id },
           {
             headers: {
               "Content-Type": "application/json",
@@ -30,22 +29,22 @@ const Product = () => {
         );
 
         if (response.data.success) {
-          setStartupData(response.data.data);
+          setProjectData(response.data.data);
         }
       } catch (error) {
         console.log(error);
         navigate("*");
       }
     };
-    fetchStartupsData();
+    fetchProjectsData();
   }, [param.id]);
 
   return (
     <>
       <DashboardNavbar />
-      {startupData && (
+      {projectData && (
         <>
-          <ProductCard data={startupData}></ProductCard>
+          <ProductCard data={projectData}></ProductCard>
         </>
       )}
     </>

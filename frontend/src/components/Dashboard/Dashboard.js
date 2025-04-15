@@ -9,7 +9,7 @@ import DashboardNavbar from './DashboardNavbar';
 const Dashboard = () => {
   const navigate = useNavigate();
   const context = useContext(UserContext);
-  let { getUserData, startups, getStartups } = context;
+  let { getUserData, projects, getProjects } = context;
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("Space")
   useEffect(() => {
@@ -17,13 +17,13 @@ const Dashboard = () => {
       navigate("/login");
     }
     getUserData();
-    getStartups();
+    getProjects();
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   }, [])
 
-  const resourceCopy = [...startups];
+  const resourceCopy = [...projects];
   const FilteredList = resourceCopy.filter((element) => {
     return element.Category === category;
   });

@@ -4,7 +4,7 @@
     border-bottom: 8px solid rgb(225, 41, 246);
 }
 
-.startup_logo_img{
+.project_logo_img{
     object-fit: cover;
 }
 
@@ -35,18 +35,18 @@
     border: 2px solid rgb(225, 41, 246);
 }
 
-.startup_label{
+.project_label{
     color: #fff;
     font-weight: 400;
 }
 
-.startup_label_desc{
+.project_label_desc{
     color: rgb(212, 183, 183);
     font-weight: 200;
     text-align: justify;
 }
 
-.startup_label_hr{
+.project_label_hr{
     color: #fff;
 }
 

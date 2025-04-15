@@ -8,7 +8,7 @@ const Registered = () => {
         <Navbar />
                 <div className="registered__main__container">
                 <div className="container">
-                    <h1 className="text-center my-3 startup__heading">For Student-Projects</h1>
+                    <h1 className="text-center my-3 project__heading">For Student-Projects</h1>
                     <div className="registered my-5">
                         <div className="registered__heading text-center">
                             BRUSH UP THE BASICS
@@ -82,7 +82,7 @@ const Registered = () => {
 
 
                 <div className="container">
-                    <h1 className="text-center my-3 startup__heading">For Investors</h1>
+                    <h1 className="text-center my-3 project__heading">For Investors</h1>
                     <div className="registered my-5">
                         <div className="registered__heading text-center">
                             THE INVESTORS'S PROCESS

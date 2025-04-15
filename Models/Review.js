@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const ReviewSchema = new mongoose.Schema({
-    Startup_id: {
+    Project_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Startup"
+        ref: "Project"
     },
     ideaRating: {
         type: Number,

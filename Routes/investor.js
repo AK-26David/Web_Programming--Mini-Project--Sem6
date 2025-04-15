@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Startup = require("../Models/Startups");
+const Project = require("../Models/Projects");
 const Order = require("../Models/OrderSchema");
 const bcrypt = require("bcryptjs");
 const User = require("../Models/User");
@@ -11,40 +11,40 @@ const fetchuser = require("../Middleware/fetchuser");
 require('dotenv').config()
 
 //Fetching Projects
-router.get("/fetch-startups", fetchuser, async (req, res) => {
+router.get("/fetch-projects", fetchuser, async (req, res) => {
   try {
-    let startups = await Startup.find({ isVerified: true });
-    if (startups.length === 0) {
+    let projects = await Project.find({ isVerified: true });
+    if (projects.length === 0) {
       return res.status(404).json({ success: false, error: "Could not find any projects right now" });
     }
-    return res.status(200).json({ success: true, data: startups });
+    return res.status(200).json({ success: true, data: projects });
   } catch (error) {
     return res.status(500).json({ success: false, error: "Internal server error" });
   }
 });
 
 //Fetching Project's Data
-router.post("/fetch-startup", async (req, res) => {
+router.post("/fetch-project", async (req, res) => {
   try {
-    const { startup_id } = req.body;
-    let startupsData = await Startup.findById(startup_id);
-    if (!startupsData) {
+    const { project_id } = req.body;
+    let projectsData = await Project.findById(project_id);
+    if (!projectsData) {
       return res.status(404).json({ success: false, error: "Could not find any projects right now" });
     }
-    return res.status(200).json({ success: true, data: startupsData });
+    return res.status(200).json({ success: true, data: projectsData });
   }
   catch (error) {
     return res.status(500).json({ success: false, error: error.message });
   }
 })
 
-//Fetching User's Startup's Data
-router.get('/fetchuserStartups', fetchuser, async (req, res) => {
+//Fetching User's Project's Data
+router.get('/fetchuserProjects', fetchuser, async (req, res) => {
   try {
     let user_id = req.user.id;
-    let data = await Startup.find({ Founder_id: user_id });
+    let data = await Project.find({ Founder_id: user_id });
     if (data.length === 0) {
-      return res.status(404).json({ success: false, msg: "No Startup Found for the User" })
+      return res.status(404).json({ success: false, msg: "No Project Found for the User" })
     }
     return res.json({ success: true, data });
   } catch (error) {
@@ -52,9 +52,9 @@ router.get('/fetchuserStartups', fetchuser, async (req, res) => {
   }
 })
 
-// Creation of Startup
+// Creation of Project
 router.post(
-  "/create-startup",
+  "/create-project",
   [
     [
       body("Name", "Enter a valid name").isLength({ min: 3 }),
@@ -104,8 +104,8 @@ router.post(
         return res.status(400).json({ success: false, errors: errors.array() });
       }
 
-      let existed = await Startup.findOne({ Name });
-      let startup = Startup({
+      let existed = await Project.findOne({ Name });
+      let project = Project({
         Founder_id,
         Name,
         Description,
@@ -124,7 +124,7 @@ router.post(
       if (existed) {
         return res.status(400).json({ success: false, msg: "Please Enter a unique name" });
       }
-      let savedStartup = await startup.save();
+      let savedProject = await project.save();
       return res.json({ success: true, msg: "Congratulations!! Your registration has been successfully Submitted." })
 
     } catch (error) {
@@ -160,21 +160,21 @@ router.post("/create-order", fetchuser, async (req, res) => {
 
 router.post('/pay-order', async (req, res) => {
   try {
-    const { amount, razorpayPaymentId, razorpayOrderId, razorpaySignature, investor_id, startup_id } =
+    const { amount, razorpayPaymentId, razorpayOrderId, razorpaySignature, investor_id, project_id } =
       req.body;
     const newOrder = Order({
       isPaid: true,
       amount: amount,
       investor_id,
-      startup_id,
+      project_id,
       razorpay: {
         orderId: razorpayOrderId,
         paymentId: razorpayPaymentId,
         signature: razorpaySignature,
       },
     });
-    let startup = await Startup.findById(startup_id);
-    await Startup.findByIdAndUpdate(startup_id, { Current: startup.Current + amount, Backers: startup.Backers + 1 });
+    let project = await Project.findById(project_id);
+    await Project.findByIdAndUpdate(project_id, { Current: project.Current + amount, Backers: project.Backers + 1 });
     await newOrder.save();
     res.json({
       success: true,
@@ -204,9 +204,9 @@ router.get("/getTransactions", fetchuser, async (req, res) => {
 
 router.post("/review", fetchuser, async (req, res) => {
   try {
-    let { ideaRating, approachRating, websiteRating, instagramRating, Startup_id, overallRating } = req.body;
+    let { ideaRating, approachRating, websiteRating, instagramRating, Project_id, overallRating } = req.body;
     let review = Review({
-      Startup_id,
+      Project_id,
       ideaRating,
       approachRating,
       websiteRating,
@@ -223,15 +223,15 @@ router.post("/review", fetchuser, async (req, res) => {
   }
 })
 
-// Get Startup's Review
-router.post("/fetchstartupReview", async (req, res) => {
+// Get Project's Review
+router.post("/fetchprojectReview", async (req, res) => {
   try {
-    const { startup_id } = req.body;
+    const { project_id } = req.body;
     const data = await Review.find({
-      Startup_id: startup_id
+      Project_id: project_id
     });
     if (data.length === 0) {
-      return res.json({ success: false, msg: "No Startup Available" })
+      return res.json({ success: false, msg: "No Project Available" })
     }
     else {
       let avOverall = 0;
@@ -246,12 +246,12 @@ router.post("/fetchstartupReview", async (req, res) => {
   }
 })
 
-// Get Startup's Transactions
-router.post('/getStartupsTransactions', async (req,res)=>{
+// Get Project's Transactions
+router.post('/getProjectsTransactions', async (req,res)=>{
   try{
-    let {startup_id} = req.body;
+    let {project_id} = req.body;
     let transactions = await Order.find({
-      startup_id
+      project_id
       });
     if(transactions.length === 0){
       return res.json({success:false, msg:"No Transactions Found"});

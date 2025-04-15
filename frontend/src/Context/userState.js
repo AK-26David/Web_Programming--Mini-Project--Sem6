@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import UserContext from "./userContext";
+import { useEffect, useState } from "react";
 import axios from "../Axios/axios";
+import UserContext from "./userContext";
 const UserState = (props) => {
   const [user, setUser] = useState(null);
   const [alert, setAlert] = useState(null);
-  const [startups, setStartups] = useState([]);
-  const [startupData, setStartupData] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [projectData, setProjectData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [orderAmount, setOrderAmount] = useState(0);
-  const [userStartup, setUserStartup] = useState([]);
+  const [userProject, setUserProject] = useState([]);
   const [investmentData, setInvestmentData] = useState([]);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   let showAlert = (message, type) => {
@@ -21,7 +21,7 @@ const UserState = (props) => {
     }, 2000);
   };
   useEffect(() => {
-    getUserStartups();
+    getUserProjects();
     getUserData();
   }, []);
 
@@ -73,7 +73,7 @@ const UserState = (props) => {
                 razorpayOrderId: response.razorpay_order_id,
                 razorpaySignature: response.razorpay_signature,
                 investor_id: user._id,
-                startup_id: startupData._id,
+                project_id: projectData._id,
               },
               {
                 headers: {
@@ -141,8 +141,8 @@ const UserState = (props) => {
       setUser(null); // Clear user data on error
     }
   };
-  const getStartups = async () => {
-    const response = await axios.get(`/api/investor/fetch-startups`, {
+  const getProjects = async () => {
+    const response = await axios.get(`/api/investor/fetch-projects`, {
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem("token"),
@@ -150,25 +150,25 @@ const UserState = (props) => {
     });
 
     if (response.data.success) {
-      setStartups(response.data.data);
+      setProjects(response.data.data);
     }
   };
-  // for Startups DashBoard
-  const getUserStartups = async () => {
+  // for Projects DashBoard
+  const getUserProjects = async () => {
     try {
-      const response = await axios.get(`/api/investor/fetchuserStartups`, {
+      const response = await axios.get(`/api/investor/fetchuserProjects`, {
         headers: {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem("token"),
         },
       });
       if (response.data.success) {
-        setUserStartup(response.data.data);
+        setUserProject(response.data.data);
       }
     } catch (error) {
-      // Handle errors, e.g., clear startups if unauthorized
-      console.error("Error fetching user startups:", error.response ? error.response.data : error.message);
-      setUserStartup([]); // Clear user startups on error
+      // Handle errors, e.g., clear projects if unauthorized
+      console.error("Error fetching user projects:", error.response ? error.response.data : error.message);
+      setUserProject([]); // Clear user projects on error
     }
   };
   return (
@@ -179,16 +179,16 @@ const UserState = (props) => {
         getUserData,
         alert,
         showAlert,
-        setStartups,
-        startups,
-        getStartups,
-        setStartupData,
-        startupData,
+        setProjects,
+        projects,
+        getProjects,
+        setProjectData,
+        projectData,
         loadRazorpay,
         setOrderAmount,
         orderAmount,
-        getUserStartups,
-        userStartup,
+        getUserProjects,
+        userProject,
         getInvestmentData,
         investmentData,
         paymentSuccess,

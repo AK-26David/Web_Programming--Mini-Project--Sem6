@@ -1,7 +1,5 @@
-import React from 'react'
-import { useEffect, useState, useContext } from "react";
-import { useNavigate, Link } from 'react-router-dom';
-import axios from '../../Axios/axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import UserContext from "../../Context/userContext";
 
 const ProductCard = (props) => {
@@ -11,7 +9,7 @@ const ProductCard = (props) => {
     const { loadRazorpay, setOrderAmount, orderAmount, paymentSuccess,} = context;
     useEffect(() => {
         if (paymentSuccess) {
-            navigate("/dashboard/startup/review");
+            navigate("/dashboard/project/review");
         }
     }, [paymentSuccess])
 
@@ -20,7 +18,7 @@ const ProductCard = (props) => {
             <div className="row">
                 <div className="col-lg-4 col-md-12 col-sm-12 mb-3">
                     <div className="card card_icons">
-                        <img src={props.data.LogoUrl} alt="startup-logo" className="startup_logo_img" draggable={false}/>
+                        <img src={props.data.LogoUrl} alt="project-logo" className="project_logo_img" draggable={false}/>
 
                         <div className="card-body">
                             <div className="row">
@@ -39,34 +37,34 @@ const ProductCard = (props) => {
                             </div>
                             <div className="row">
                                 <div className="col-md-12 col-sm-12">
-                                    <Link to={`/dashboard/startup/${props.data._id}/viewReview`} className="btn view_review">View Transaction and Review</Link>
+                                    <Link to={`/dashboard/project/${props.data._id}/viewReview`} className="btn view_review">View Transaction and Review</Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-5 col-md-12 col-sm-12 mb-3">
-                    <label className="startup_label">Startup Name</label>
-                    <p className="startup_label_desc">{props.data.Name}</p>
-                    <hr className="startup_label_hr" />
-                    <label className="startup_label">Description</label>
-                    <p className="startup_label_desc">{(props.data.Description)}</p>
-                    <hr className="startup_label_hr" />
-                    <label className="startup_label">Website's Address</label>
-                    <p className="startup_label_desc">{props.data.Website}</p>
-                    <hr className="startup_label_hr" />
-                    <label className="startup_label">Startup Category</label>
-                    <p className="startup_label_desc">{props.data.Category}</p>
-                    <hr className="startup_label_hr" />
-                    <label className="startup_label">Startup's Vision</label>
-                    <p className="startup_label_desc">{props.data.Vision}</p>
-                    <hr className="startup_label_hr" />
-                    <label className="startup_label">Problem Domain</label>
-                    <p className="startup_label_desc">{props.data.Problemstatement}</p>
-                    <hr className="startup_label_hr" />
-                    <label className="startup_label">How they are solving the problem</label>
-                    <p className="startup_label_desc">{props.data.Solution}</p>
-                    <hr className="startup_label_hr" />
+                    <label className="project_label">Project's Name</label>
+                    <p className="project_label_desc">{props.data.Name}</p>
+                    <hr className="project_label_hr" />
+                    <label className="project_label">Description</label>
+                    <p className="project_label_desc">{(props.data.Description)}</p>
+                    <hr className="project_label_hr" />
+                    <label className="project_label">Website's Address</label>
+                    <p className="project_label_desc">{props.data.Website}</p>
+                    <hr className="project_label_hr" />
+                    <label className="project_label">Project's Category</label>
+                    <p className="project_label_desc">{props.data.Category}</p>
+                    <hr className="project_label_hr" />
+                    <label className="project_label">Project's Vision</label>
+                    <p className="project_label_desc">{props.data.Vision}</p>
+                    <hr className="project_label_hr" />
+                    <label className="project_label">Problem Domain</label>
+                    <p className="project_label_desc">{props.data.Problemstatement}</p>
+                    <hr className="project_label_hr" />
+                    <label className="project_label">Their approach to the solution</label>
+                    <p className="project_label_desc">{props.data.Solution}</p>
+                    <hr className="project_label_hr" />
                 </div>
                 <div className="col-lg-3 col-md-12 col-sm-12 mb-3">
                     <div className="card product_card">
