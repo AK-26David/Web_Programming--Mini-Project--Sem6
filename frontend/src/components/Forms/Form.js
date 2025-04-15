@@ -152,7 +152,7 @@ const Form = () => {
                                         name="Category"
                                         value={credentials.Category}
                                         onChange={onChange}
-                                        required={true} > 
+                                        required={true} >
                                         <option >Choose the category</option>
                                         <option value="Automobile">Automobile</option>
                                         <option value="Space">Space</option>

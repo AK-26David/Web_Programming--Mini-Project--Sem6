@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../Axios/axios';
 import UserContext from '../../Context/userContext';
 import "./ReviewForm.css";
-import axios from '../../Axios/axios';
 const ReviewForm = () => {
     const navigate = useNavigate();
     const context = useContext(UserContext);
@@ -45,11 +45,11 @@ const ReviewForm = () => {
                     </div>
                     <div className="col-md-7 col-sm-12">
                         <div className="card-body">
-                            <h5 className="card-title text-center">Startup Rating Form</h5>
+                            <h5 className="card-title text-center">Project Rating Form</h5>
                             <form className="my-4">
-                                <label for="exampleInputPassword1" className="form-label text-muted mb-3">How much rating will you give:</label>
+                                <label for="exampleInputPassword1" className="form-label text-muted mb-3">What would you like to rate:</label>
                                 <div className="mb-3">
-                                    <label for="exampleInputPassword1" className="form-label text-muted">To the idea and the vision?</label>
+                                    <label for="exampleInputPassword1" className="form-label text-muted">Their idea and vision?</label>
                                     <select name="ideaRating" className="form-select rating_btn" onChange={onChange} aria-label="Default select example">
                                         <option selected>Open this select menu</option>
                                         <option value={1}>1</option>
@@ -60,7 +60,7 @@ const ReviewForm = () => {
                                     </select>
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputPassword1" className="form-label text-muted">To their approach of solving the problem?</label>
+                                    <label for="exampleInputPassword1" className="form-label text-muted">Their approach of solving the problem?</label>
                                     <select name="approachRating" className="form-select rating_btn" onChange={onChange} aria-label="Default select example">
                                         <option selected>Open this select menu</option>
                                         <option value={1}>1</option>
@@ -71,7 +71,7 @@ const ReviewForm = () => {
                                     </select>
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputPassword1" className="form-label text-muted">To the website of the Startup?</label>
+                                    <label for="exampleInputPassword1" className="form-label text-muted">Their website?</label>
                                     <select name="websiteRating" className="form-select rating_btn" onChange={onChange} aria-label="Default select example">
                                         <option selected>Open this select menu</option>
                                         <option value={1}>1</option>
@@ -82,7 +82,7 @@ const ReviewForm = () => {
                                     </select>
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputPassword1" className="form-label text-muted">To the Instagram page of the Startup?</label>
+                                    <label for="exampleInputPassword1" className="form-label text-muted">Their Instagram page?</label>
                                     <select name="instagramRating" className="form-select rating_btn" onChange={onChange} aria-label="Default select example">
                                         <option selected>Open this select menu</option>
                                         <option value={1}>1</option>

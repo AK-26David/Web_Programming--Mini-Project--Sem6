@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
-import "./Registered.css";
+import React from "react";
 import Navbar from "../Navbar";
+import "./Registered.css";
 
 const Registered = () => {
     return (
@@ -8,7 +8,7 @@ const Registered = () => {
         <Navbar />
                 <div className="registered__main__container">
                 <div className="container">
-                    <h1 className="text-center my-3 startup__heading">For Entrepreneurs</h1>
+                    <h1 className="text-center my-3 startup__heading">For Student-Projects</h1>
                     <div className="registered my-5">
                         <div className="registered__heading text-center">
                             BRUSH UP THE BASICS
@@ -19,7 +19,7 @@ const Registered = () => {
                                     <i className="icon fa fa-home"></i>
                                     <div className="content">
                                         <p>
-                                            Know your idea's worth by doing research in domain
+                                            Know your idea's worth by doing research in the domain
                                         </p>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@ const Registered = () => {
                 <div className="container">
                 <div className="registered my-5">
                     <div className="registered__heading text-center">
-                        GET YOUR STARTUP REGISTERED
+                        GET YOUR STUDENT-PROJECT REGISTERED
                     </div>
                     <div className="registered__container">
                         <div className="timeline my-5">
